@@ -7,7 +7,7 @@ const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
 	const token = getToken()
 	
 	if (!token) {
-		return <Navigate to={ROUTES.HOME} replace={true} />
+		return <Navigate to={ROUTES.LOGIN} replace={true} />
 	}
 	return children
 }

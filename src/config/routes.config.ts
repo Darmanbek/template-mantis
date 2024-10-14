@@ -2,6 +2,7 @@ class Routes {
 	HOME = "/"
 	
 	LOGIN = "/login"
+	FORGOT_PASSWORD = "/forgot-password"
 	REGISTER = "/register"
 	
 	DASHBOARD = "/dashboard"

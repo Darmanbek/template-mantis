@@ -1,12 +1,13 @@
 import { Menu } from "antd"
 import { type  FC } from "react"
+import { Logo } from "src/components/shared"
 import { menu } from "./menu"
 
 const SideMenu: FC = () => {
 	return (
 		<>
 			<div>
-				<h1>Logo</h1>
+				<Logo />
 			</div>
 			<Menu
 				items={menu}

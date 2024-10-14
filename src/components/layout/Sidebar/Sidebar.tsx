@@ -6,13 +6,12 @@ import { SideMenu } from "./SideMenu"
 
 const Sidebar: FC = () => {
 	const { isWide } = useResponsive(768)
-	console.log(isWide)
 	
 	if (isWide) return (
 		<Drawer
 			width={260}
 		>
-			<h1>Sidebar</h1>
+			<SideMenu />
 		</Drawer>
 	)
 	
