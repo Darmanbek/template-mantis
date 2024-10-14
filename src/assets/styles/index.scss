@@ -1,0 +1,43 @@
+*,
+*::after,
+*::before
+{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	outline: none;
+	text-decoration: none;
+	list-style: none;
+}
+
+html
+{
+	scroll-behavior: smooth;
+}
+
+img
+{
+	max-width: 100%;
+	height: auto;
+	display: inline-block;
+}
+
+a,
+span,
+button
+{
+	display: inline-block;
+	background: transparent;
+}
+
+ul,
+li
+{
+	margin: 0;
+	padding: 0;
+}
+
+body
+{
+	min-height: 100vh;
+}
