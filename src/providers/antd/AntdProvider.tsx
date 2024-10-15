@@ -1,28 +1,41 @@
 import { App, ConfigProvider, theme } from "antd"
-import { type  FC, PropsWithChildren } from "react"
+import { type  FC, PropsWithChildren, useState } from "react"
 
 const AntdProvider: FC<PropsWithChildren> = ({ children }) => {
+	const [isDark] = useState(false)
+	
 	const token = theme.getDesignToken({
-		algorithm: theme.darkAlgorithm
+		token: isDark ? {
+			colorBgLayout: "rgb(18, 18, 18)",
+			colorBgContainer: "rgb(30, 30, 30)",
+		} : {},
+		algorithm: isDark ? theme.darkAlgorithm : theme.defaultAlgorithm
 	})
 	return (
 		<ConfigProvider
 			theme={{
-				algorithm: theme.darkAlgorithm,
-				token: {
-					colorBgLayout: "rgb(18, 18, 18)",
-					colorBgContainer: "rgb(30, 30, 30)",
-				},
+				algorithm: isDark ? theme.darkAlgorithm : theme.defaultAlgorithm,
+				token,
 				components: {
 					Layout: {
 						headerBg: token.colorBgContainer,
 						// headerHeight: "auto"
+						triggerHeight: 76
+					},
+					Menu: {
+						subMenuItemBg: "transparent"
 					}
 				},
+				cssVar: true
 			}}
 			typography={{
 				style: {
 					margin: 0
+				}
+			}}
+			menu={{
+				style: {
+					borderRight: 0
 				}
 			}}
 		>

@@ -1,4 +1,4 @@
-import { Button, Flex, Form, Input } from "antd"
+import { Button, Card, Flex, Form, Input } from "antd"
 import Title from "antd/es/typography/Title"
 import { type  FC } from "react"
 import { Link } from "react-router-dom"
@@ -10,7 +10,7 @@ import { FORM_DEFAULT } from "src/constants"
 const ForgotPassword: FC = () => {
 	return (
 		<Auth>
-			<div className={styles.content}>
+			<Card className={styles.content}>
 				<Flex
 					align={"end"}
 					justify={"space-between"}
@@ -55,7 +55,7 @@ const ForgotPassword: FC = () => {
 						</Button>
 					</Form.Item>
 				</Form>
-			</div>
+			</Card>
 		</Auth>
 	)
 }

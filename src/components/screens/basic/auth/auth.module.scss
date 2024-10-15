@@ -44,11 +44,10 @@
 
 	.content
 	{
-		padding: 40px;
+		z-index: 10;
+		padding: 20px;
 		margin: 24px;
 		max-width: 475px;
 		width: 100%;
-		background-color: var(--color-bg-container);
-		border-radius: var(--border-radius);
 	}
 }

@@ -1,4 +1,4 @@
-import { Badge, Button, Flex, Form, Input, Space } from "antd"
+import { Badge, Button, Card, Flex, Form, Input, Space } from "antd"
 import Title from "antd/es/typography/Title"
 import { type  FC } from "react"
 import { Link } from "react-router-dom"
@@ -10,7 +10,7 @@ import { Auth } from "./Auth"
 const Register: FC = () => {
 	return (
 		<Auth>
-			<div className={styles.content}>
+			<Card className={styles.content}>
 				<Flex
 					align={"end"}
 					justify={"space-between"}
@@ -113,7 +113,7 @@ const Register: FC = () => {
 						</Button>
 					</Form.Item>
 				</Form>
-			</div>
+			</Card>
 		</Auth>
 	)
 }
