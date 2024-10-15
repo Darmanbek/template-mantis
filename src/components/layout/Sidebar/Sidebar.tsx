@@ -1,5 +1,5 @@
 import {
-	RightOutlined,
+	RightOutlined
 } from "@ant-design/icons"
 import { Avatar, Button, Drawer } from "antd"
 import Meta from "antd/es/card/Meta"

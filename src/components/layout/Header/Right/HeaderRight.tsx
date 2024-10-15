@@ -39,7 +39,7 @@ const HeaderRight: FC = () => {
 				style={{ height: "auto" }}
 				icon={<Avatar src={"https://api.dicebear.com/7.x/miniavs/svg?seed=1"} alt={"icon"} />}
 			>
-				User
+				Darmanbek
 			</Button>
 		</Space>
 	)

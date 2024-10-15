@@ -2,7 +2,6 @@ import {
 	Button,
 	Card,
 	Checkbox,
-	Divider,
 	Flex,
 	Form,
 	FormProps,
@@ -11,10 +10,11 @@ import {
 import Title from "antd/es/typography/Title"
 import { type  FC, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
+import { UiInputMask } from "src/components/ui"
 import { ROUTES } from "src/config/routes.config"
 import { FORM_DEFAULT } from "src/constants"
-import { sleep } from "src/utils/faker.utils"
-import { saveToken } from "src/utils/storage.utils"
+import { useTranslation } from "src/hooks"
+import { saveToken, sleep } from "src/utils"
 import { Auth } from "./Auth"
 import styles from "./auth.module.scss"
 
@@ -28,6 +28,7 @@ interface LoginFormValues {
 const Login: FC = () => {
 	const [form] = Form.useForm<LoginFormValues>()
 	const navigate = useNavigate()
+	const { t } = useTranslation()
 	
 	const email = Form.useWatch("email", form)
 	const phone = Form.useWatch("phone", form)
@@ -53,10 +54,10 @@ const Login: FC = () => {
 					style={{ marginBottom: 4 }}
 				>
 					<Title level={3}>
-						Login
+						{t("Login")}
 					</Title>
 					<Link to={ROUTES.REGISTER}>
-						Don't have an account?
+						{t("Don't have an account?")}
 					</Link>
 				</Flex>
 				<Form
@@ -69,16 +70,15 @@ const Login: FC = () => {
 				>
 					<Form.Item
 						name={"email"}
-						label={"Email Address"}
+						label={t("Email Address")}
 						rules={[
 							{ required: !phone },
 							{ type: "email" }
 						]}
 						initialValue={"user@example.com"}
 					>
-						<Input />
+						<Input placeholder={t("Please enter")} />
 					</Form.Item>
-					<Divider>Or</Divider>
 					<Form.Item
 						name={"phone"}
 						label={"Phone Number"}
@@ -87,7 +87,7 @@ const Login: FC = () => {
 						]}
 						initialValue={"+998 90 123 45 67"}
 					>
-						<Input />
+						<UiInputMask mask={"+\\9\\98 99 999 99 99"} />
 					</Form.Item>
 					<Form.Item
 						name={"password"}

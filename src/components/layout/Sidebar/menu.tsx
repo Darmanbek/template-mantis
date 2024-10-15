@@ -1,7 +1,7 @@
 import {
-	ApartmentOutlined,
+	ApartmentOutlined, CalendarOutlined,
 	DashboardOutlined, DatabaseOutlined,
-	IdcardOutlined
+	IdcardOutlined, MessageOutlined
 } from "@ant-design/icons"
 import { type ItemType } from "antd/es/menu/interface"
 import { antdUrl } from "src/config"
@@ -64,5 +64,15 @@ export const menu: ItemType[] = [
 		key: ROUTES.APPS_GROUP,
 		label: "Applications",
 		type: "group"
+	},
+	{
+		key: ROUTES.APPS_CHAT,
+		icon: <MessageOutlined />,
+		label: "Chat"
+	},
+	{
+		key: ROUTES.APPS_CALENDAR,
+		icon: <CalendarOutlined />,
+		label: "Calendar"
 	},
 ]

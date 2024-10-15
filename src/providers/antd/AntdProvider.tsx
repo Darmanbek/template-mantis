@@ -2,7 +2,7 @@ import { App, ConfigProvider, theme } from "antd"
 import { type  FC, PropsWithChildren, useState } from "react"
 
 const AntdProvider: FC<PropsWithChildren> = ({ children }) => {
-	const [isDark] = useState(false)
+	const [isDark] = useState(true)
 	
 	const token = theme.getDesignToken({
 		token: isDark ? {
@@ -26,7 +26,7 @@ const AntdProvider: FC<PropsWithChildren> = ({ children }) => {
 						subMenuItemBg: "transparent"
 					}
 				},
-				cssVar: true
+				cssVar: true,
 			}}
 			typography={{
 				style: {

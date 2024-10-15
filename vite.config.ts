@@ -9,5 +9,12 @@ export default defineConfig({
 		alias: {
 			src: path.resolve(__dirname, "./src")
 		}
+	},
+	css: {
+		preprocessorOptions: {
+			scss: {
+				api: "modern"
+			}
+		}
 	}
 })

@@ -1,5 +1,5 @@
 import Cookies from "js-cookie"
-import { EnumToken } from "src/constants"
+import { EnumLang, EnumToken } from "src/constants"
 
 export const getToken = () => {
 	return Cookies.get(EnumToken.TOKEN) || ""
@@ -14,4 +14,12 @@ export const saveToken = (token: string, remember?: boolean) => {
 
 export const removeToken = () => {
 	Cookies.remove(EnumToken.TOKEN)
+}
+
+export const getLang = () => {
+	return Cookies.get(EnumLang.LANG) || EnumLang.EN
+}
+
+export const saveLang = (lang: EnumLang) => {
+	Cookies.set(EnumLang.LANG, lang)
 }
