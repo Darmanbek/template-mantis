@@ -1,12 +1,12 @@
 import {
 	BellOutlined,
 	MailOutlined,
-	SettingOutlined,
 	TranslationOutlined,
 	WindowsOutlined
 } from "@ant-design/icons"
 import { Button, Space } from "antd"
 import { type  FC } from "react"
+import { Theme } from "./Theme/Theme"
 import { FullScreen } from "./FullScreen/FullScreen"
 import { Profile } from "./Profile/Profile"
 
@@ -31,10 +31,7 @@ const HeaderRight: FC = () => {
 				icon={<MailOutlined />}
 			/>
 			<FullScreen />
-			<Button
-				type={"text"}
-				icon={<SettingOutlined spin={true} />}
-			/>
+			<Theme />
 			<Profile />
 		</Space>
 	)

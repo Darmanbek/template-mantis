@@ -22,6 +22,7 @@ export const useStylesSidebar = createStyles(({ token,css }, { collapsed }: Styl
 		menu: {
 			overflowY: "auto",
 			overflowX: "hidden",
+			scrollbarWidth: "thin",
 			height: "calc(100% - 64px)",
 		},
 		logo: {
