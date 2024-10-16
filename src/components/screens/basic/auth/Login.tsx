@@ -14,7 +14,8 @@ import { UiInputMask } from "src/components/ui"
 import { ROUTES } from "src/config/routes.config"
 import { FORM_DEFAULT } from "src/constants"
 import { useTranslation } from "src/hooks"
-import { saveToken, sleep } from "src/utils"
+import { useAuthStore } from "src/store"
+import { sleep } from "src/utils"
 import { Auth } from "./Auth"
 import styles from "./auth.module.scss"
 
@@ -28,6 +29,9 @@ interface LoginFormValues {
 const Login: FC = () => {
 	const [form] = Form.useForm<LoginFormValues>()
 	const navigate = useNavigate()
+	const saveToken = useAuthStore(
+		state => state.setToken
+	)
 	const { t } = useTranslation()
 	
 	const email = Form.useWatch("email", form)

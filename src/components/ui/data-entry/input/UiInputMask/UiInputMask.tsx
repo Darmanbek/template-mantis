@@ -6,7 +6,7 @@ import { SizeType } from "antd/es/config-provider/SizeContext"
 import { FormItemInputContext } from "antd/es/form/context"
 import useStyle from "antd/es/input/style"
 import useVariant from "antd/es/form/hooks/useVariants"
-import clsx from "clsx"
+import { cx } from "antd-style"
 import { forwardRef, type ReactNode, useContext } from "react"
 import InputMask, { Props, ReactInputMask } from "react-input-mask"
 import { useTranslation } from "src/hooks"
@@ -49,7 +49,7 @@ const UiInputMask = forwardRef<ReactInputMask, UiInputMaskProps>(
 		if (prefix || suffix || hasFeedback) return (
 			<ConfigProvider>
 			<span
-				className={clsx(
+				className={cx(
 					`${prefixCls}-affix-wrapper`,
 					`${prefixCls}-affix-wrapper${rootSize === "large" ? "-lg" : rootSize === "small" ? "-sm" : ""}`,
 					hashId,
@@ -63,7 +63,7 @@ const UiInputMask = forwardRef<ReactInputMask, UiInputMaskProps>(
 				{prefix && <span className={"ant-input-prefix"}>{prefix}</span>}
 				<InputMask
 					placeholder={t("Please enter")}
-					className={clsx(
+					className={cx(
 						prefixCls,
 						`${prefixCls}${rootSize === "large" ? "-lg" : rootSize === "small" ? "-sm" : ""}`,
 						hashId
@@ -80,7 +80,7 @@ const UiInputMask = forwardRef<ReactInputMask, UiInputMaskProps>(
 			<ConfigProvider>
 				<InputMask
 					placeholder={t("Please enter")}
-					className={clsx(
+					className={cx(
 						prefixCls,
 						`${prefixCls}${rootSize === "large" ? "-lg" : rootSize === "small" ? "-sm" : ""}`,
 						hashId,

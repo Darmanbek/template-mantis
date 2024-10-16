@@ -2,18 +2,24 @@ import AntdLayout from "antd/es/layout"
 import { Content } from "antd/es/layout/layout"
 import { type FC } from "react"
 import { Outlet } from "react-router-dom"
+import { UiContainer } from "src/components/ui"
+import { useStylesLayout } from "./useStylesLayout"
 import { Header } from "./Header/Header"
 import { Sidebar } from "./Sidebar/Sidebar"
-import styles from "./layout.module.scss"
 
 const Layout: FC = () => {
+	const { styles } = useStylesLayout()
 	return (
 		<AntdLayout className={styles.layout}>
 			<Sidebar />
-			<Content>
+			<AntdLayout className={styles.layout}>
 				<Header />
-				<Outlet />
-			</Content>
+				<Content className={styles.main}>
+					<UiContainer>
+						<Outlet />
+					</UiContainer>
+				</Content>
+			</AntdLayout>
 		</AntdLayout>
 	)
 }

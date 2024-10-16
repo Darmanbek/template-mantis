@@ -1,24 +1,37 @@
-import {
-	RightOutlined
-} from "@ant-design/icons"
-import { Avatar, Button, Drawer } from "antd"
-import Meta from "antd/es/card/Meta"
+import { Drawer } from "antd"
+import { useResponsive } from "antd-style"
 import Sider from "antd/es/layout/Sider"
-import Paragraph from "antd/es/typography/Paragraph"
 import { type  FC } from "react"
-import { useResponsive } from "src/hooks"
 import { useMenuStore } from "src/store"
+import { SideTrigger } from "./SideTrigger"
+import { useStylesSidebar } from "./useStylesSidebar"
 import { SideMenu } from "./SideMenu"
-import styles from "./sidebar.module.scss"
+// import styles from "./sidebar.module.scss"
 
 const Sidebar: FC = () => {
-	const { isWide } = useResponsive(768)
-	const { collapsed } = useMenuStore()
+	const { md } = useResponsive()
+	const { collapsed, toggleCollapsed } = useMenuStore()
+	const { styles } = useStylesSidebar({
+		collapsed
+	})
 	
-	if (isWide) return (
+	if (!md) return (
 		<Drawer
 			width={260}
+			placement={"left"}
+			closable={false}
+			onClose={toggleCollapsed}
+			open={collapsed}
+			styles={{
+				body: {
+					padding: 0
+				},
+				footer: {
+					padding: 4
+				}
+			}}
 			className={styles.drawer}
+			footer={<SideTrigger />}
 		>
 			<SideMenu />
 		</Drawer>
@@ -32,37 +45,7 @@ const Sidebar: FC = () => {
 			theme={"light"}
 			className={styles.sider}
 			collapsible={true}
-			trigger={(
-				<Button
-					type={"text"}
-					block={true}
-					style={{
-						height: "100%",
-						display: "flex",
-						justifyContent: "space-between"
-					}}
-				>
-					<Meta
-						style={{
-							display: "flex",
-							gap: 8,
-							textAlign: "start"
-						}}
-						avatar={
-							<Avatar
-								size={"large"}
-								src={"https://api.dicebear.com/7.x/miniavs/svg?seed=1"}
-								alt={"Icon"}
-							/>
-						}
-						title={"User"}
-						description={<Paragraph type={"secondary"}>
-							Frontend Developer
-						</Paragraph>}
-					/>
-					<RightOutlined />
-				</Button>
-			)}
+			trigger={<SideTrigger />}
 		>
 			<SideMenu />
 		</Sider>
