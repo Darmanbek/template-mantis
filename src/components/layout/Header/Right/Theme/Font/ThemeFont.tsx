@@ -10,9 +10,7 @@ const ThemeFont: FC = () => {
 	const onChangeRadio = (value: string) => {
 		setFontFamily(value)
 	}
-	const {
-		token
-	} = theme.useToken()
+	const token = theme.getDesignToken()
 	return (
 		<>
 			<Radio.Group
