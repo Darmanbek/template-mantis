@@ -4,10 +4,12 @@ import {
 	UserOutlined
 } from "@ant-design/icons"
 import { Avatar, Button, Flex, Popover, Tabs } from "antd"
-import Meta from "antd/es/card/Meta"
-import Paragraph from "antd/es/typography/Paragraph"
-import { type  FC } from "react"
+import { type  FC, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import { UiMeta } from "src/components/ui"
+import { ROUTES } from "src/config"
 import { ProfileData } from "src/data"
+import { useFetchResponse } from "src/hooks"
 import { useAuthStore } from "src/store"
 import {
 	ProfileMenu
@@ -17,8 +19,20 @@ import {
 } from "./SettingsMenu"
 
 const Profile: FC = () => {
-	const { loading, logout } = useAuthStore()
+	const navigate = useNavigate()
+	const { clearToken } = useAuthStore()
+	const {
+		mutate: logout,
+		isLoading,
+		isSuccess
+	} = useFetchResponse()
 	
+	useEffect(() => {
+		if (isSuccess) {
+			clearToken()
+			navigate(ROUTES.PAGES_AUTHENTICATION_LOGIN, { replace: true })
+		}
+	}, [clearToken, isSuccess, navigate])
 	return (
 		<Popover
 			trigger={"click"}
@@ -29,12 +43,8 @@ const Profile: FC = () => {
 			content={(
 				<>
 					<Flex justify={"space-between"} align={"center"}>
-						<Meta
-							style={{
-								display: "flex",
-								gap: 8,
-								textAlign: "start"
-							}}
+						<UiMeta
+							titleStrong={false}
 							avatar={
 								<Avatar
 									size={"large"}
@@ -44,16 +54,12 @@ const Profile: FC = () => {
 								/>
 							}
 							title={ProfileData.name}
-							description={(
-								<Paragraph type={"secondary"}>
-									{ProfileData.role}
-								</Paragraph>
-							)}
+							description={ProfileData.role}
 						/>
 						<Button
 							type={"text"}
 							size={"large"}
-							loading={loading}
+							loading={isLoading}
 							icon={<LogoutOutlined />}
 							onClick={logout}
 						/>

@@ -4,12 +4,12 @@ import { type  FC } from "react"
 import { useNavigate } from "react-router-dom"
 import { useStylesSidebar } from "./useStylesSidebar"
 import { Logo } from "src/components/shared"
-import { useMenuStore } from "src/store"
+import { useThemeStore } from "src/store"
 import { menu } from "./menu"
 
 const SideMenu: FC = () => {
 	const navigate = useNavigate()
-	const { collapsed } = useMenuStore()
+	const { collapsed } = useThemeStore()
 	const { md } = useResponsive()
 	const { styles } = useStylesSidebar({
 		collapsed: collapsed && !!md

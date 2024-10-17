@@ -2,15 +2,14 @@ import { Drawer } from "antd"
 import { useResponsive } from "antd-style"
 import Sider from "antd/es/layout/Sider"
 import { type  FC } from "react"
-import { useMenuStore } from "src/store"
+import { useThemeStore } from "src/store"
 import { SideTrigger } from "./SideTrigger"
 import { useStylesSidebar } from "./useStylesSidebar"
 import { SideMenu } from "./SideMenu"
-// import styles from "./sidebar.module.scss"
 
 const Sidebar: FC = () => {
 	const { md } = useResponsive()
-	const { collapsed, toggleCollapsed } = useMenuStore()
+	const { direction, collapsed, toggleCollapsed } = useThemeStore()
 	const { styles } = useStylesSidebar({
 		collapsed
 	})
@@ -18,7 +17,7 @@ const Sidebar: FC = () => {
 	if (!md) return (
 		<Drawer
 			width={260}
-			placement={"left"}
+			placement={direction === "rtl" ? "right" : "left"}
 			closable={false}
 			onClose={toggleCollapsed}
 			open={collapsed}

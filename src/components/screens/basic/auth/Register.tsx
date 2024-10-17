@@ -1,13 +1,28 @@
 import { Badge, Button, Card, Flex, Form, Input, Space } from "antd"
 import Title from "antd/es/typography/Title"
-import { type  FC } from "react"
+import { type  FC, useMemo } from "react"
 import { Link } from "react-router-dom"
 import styles from "src/components/screens/basic/auth/auth.module.scss"
 import { ROUTES } from "src/config/routes.config"
 import { FORM_DEFAULT } from "src/constants"
+import { validatePassword } from "src/utils"
 import { Auth } from "./Auth"
 
+
+interface TRegister {
+	firstName: string
+	lastName: string
+	company: string
+	email: string
+	phone: string
+	password: string
+}
+
 const Register: FC = () => {
+	const [form] = Form.useForm<TRegister>()
+	const password = Form.useWatch("password", form) || ""
+	const [status, text] = useMemo(() => validatePassword(password), [password])
+	
 	return (
 		<Auth>
 			<Card className={styles.content}>
@@ -19,7 +34,7 @@ const Register: FC = () => {
 					<Title level={3}>
 						Sign up
 					</Title>
-					<Link to={ROUTES.LOGIN}>
+					<Link to={ROUTES.PAGES_AUTHENTICATION_LOGIN}>
 						Already have an account?
 					</Link>
 				</Flex>
@@ -27,6 +42,7 @@ const Register: FC = () => {
 					{...FORM_DEFAULT}
 					name={"Register Form"}
 					size={"large"}
+					form={form}
 					style={{ marginTop: 24 }}
 				>
 					<Space
@@ -38,7 +54,7 @@ const Register: FC = () => {
 							}
 						}}
 					>
-						<Form.Item
+						<Form.Item<TRegister>
 							name={"firstName"}
 							label={"First Name"}
 							rules={[
@@ -47,7 +63,7 @@ const Register: FC = () => {
 						>
 							<Input placeholder={"Alex"} />
 						</Form.Item>
-						<Form.Item
+						<Form.Item<TRegister>
 							name={"lastName"}
 							label={"Last Name"}
 							rules={[
@@ -57,7 +73,7 @@ const Register: FC = () => {
 							<Input placeholder={"Mercer"} />
 						</Form.Item>
 					</Space>
-					<Form.Item
+					<Form.Item<TRegister>
 						name={"company"}
 						label={"Company"}
 						rules={[
@@ -66,7 +82,7 @@ const Register: FC = () => {
 					>
 						<Input placeholder={"Inc."} />
 					</Form.Item>
-					<Form.Item
+					<Form.Item<TRegister>
 						name={"email"}
 						label={"Email Address"}
 						rules={[
@@ -76,28 +92,42 @@ const Register: FC = () => {
 					>
 						<Input placeholder={"user@example.com"} />
 					</Form.Item>
-					<Form.Item
+					<Form.Item<TRegister>
+						name={"phone"}
+						label={"Email Address"}
+						rules={[
+							{ required: true },
+							{ type: "email" }
+						]}
+					>
+						<Input placeholder={"user@example.com"} />
+					</Form.Item>
+					<Form.Item<TRegister>
 						name={"password"}
 						label={"Password"}
 						rules={[
-							{ required: true }
+							{ required: true },
+							{ max: 10 }
 						]}
-						help={<Badge
-							status={"error"}
-							text={"Bad"}
-							styles={{
-								indicator: {
-									width: 80	,
-									borderRadius: 99
-								}
-							}}
-							style={{
-								marginBottom: 24
-							}}
-						/>}
+						style={{
+							marginBottom: 0
+						}}
 					>
 						<Input.Password placeholder={"********"} />
 					</Form.Item>
+					<Badge
+						status={status}
+						text={text}
+						styles={{
+							indicator: {
+								width: 80,
+								borderRadius: 99
+							}
+						}}
+						style={{
+							marginBottom: 24
+						}}
+					/>
 					<Form.Item
 						style={{
 							marginTop: 24,

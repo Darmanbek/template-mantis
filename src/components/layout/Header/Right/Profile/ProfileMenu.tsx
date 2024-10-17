@@ -4,13 +4,27 @@ import {
 	WalletOutlined
 } from "@ant-design/icons"
 import { Menu } from "antd"
-import { type  FC } from "react"
+import { type  FC, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import { ROUTES } from "src/config"
+import { useFetchResponse } from "src/hooks"
 import { useAuthStore } from "src/store"
 
 const ProfileMenu: FC = () => {
-	const { loading, logout } = useAuthStore()
+	const navigate = useNavigate()
+	const { clearToken } = useAuthStore()
+	const {
+		mutate: logout,
+		isLoading,
+		isSuccess
+	} = useFetchResponse()
 	
+	useEffect(() => {
+		if (isSuccess) {
+			clearToken()
+			navigate(ROUTES.PAGES_AUTHENTICATION_LOGIN, { replace: true })
+		}
+	}, [clearToken, isSuccess, navigate])
 	return (
 		<>
 			<Menu
@@ -31,9 +45,9 @@ const ProfileMenu: FC = () => {
 						icon: <WalletOutlined />
 					},
 					{
-						key: ROUTES.LOGOUT,
+						key: ROUTES.PAGES_AUTHENTICATION_LOGIN,
 						label: "Logout",
-						icon: loading ? (
+						icon: isLoading ? (
 							<LoadingOutlined spin={true} />
 						) : (
 							<LogoutOutlined />

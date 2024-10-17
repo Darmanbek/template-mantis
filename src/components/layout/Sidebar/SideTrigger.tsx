@@ -1,15 +1,15 @@
 import { RightOutlined, UserOutlined } from "@ant-design/icons"
 import { Avatar, Button } from "antd"
 import { useResponsive } from "antd-style"
-import Meta from "antd/es/card/Meta"
 import Paragraph from "antd/es/typography/Paragraph"
 import { type  FC } from "react"
+import { UiMeta } from "src/components/ui"
 import { useStylesSidebar } from "./useStylesSidebar"
 import { ProfileData } from "src/data"
-import { useMenuStore } from "src/store"
+import { useThemeStore } from "src/store"
 
 const SideTrigger: FC = () => {
-	const { collapsed } = useMenuStore()
+	const { collapsed } = useThemeStore()
 	const { md } = useResponsive()
 	const { styles } = useStylesSidebar({
 		collapsed: collapsed && !!md
@@ -21,12 +21,7 @@ const SideTrigger: FC = () => {
 				block={true}
 				className={styles.trigger}
 			>
-				<Meta
-					style={{
-						display: "flex",
-						gap: 8,
-						textAlign: "start"
-					}}
+				<UiMeta
 					avatar={
 						<Avatar
 							size={"large"}
@@ -35,6 +30,7 @@ const SideTrigger: FC = () => {
 							alt={"Icon"}
 						/>
 					}
+					titleStrong={false}
 					title={!(collapsed && md) && ProfileData.name}
 					description={!(collapsed && md) && <Paragraph type={"secondary"}>
 						{ProfileData.role}

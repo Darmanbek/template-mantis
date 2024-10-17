@@ -12,7 +12,7 @@ import {
 	FileDoneOutlined,
 	FileTextOutlined,
 	FormOutlined,
-	IdcardOutlined,
+	IdcardOutlined, LineChartOutlined,
 	LoginOutlined,
 	MenuUnfoldOutlined,
 	MessageOutlined,
@@ -75,13 +75,13 @@ export const menu: ItemType[] = [
 	},
 	{
 		key: ROUTES.WIDGETS_DATA,
-		icon: <IdcardOutlined />,
-		label: "Statistics"
+		icon: <DatabaseOutlined />,
+		label: "Data"
 	},
 	{
 		key: ROUTES.WIDGETS_CHART,
-		icon: <DatabaseOutlined />,
-		label: "Data"
+		icon: <LineChartOutlined />,
+		label: "Chart"
 	},
 	{
 		key: ROUTES.APPS_GROUP,
@@ -475,5 +475,5 @@ export const menu: ItemType[] = [
 		key: ROUTES.ROADMAP,
 		icon: <DeploymentUnitOutlined />,
 		label: "Roadmap"
-	},
+	}
 ]

@@ -1,9 +1,13 @@
 import { createStyles } from "antd-style"
 
-export const useStylesHeader = createStyles(({ token }) => ({
+interface StylesHeaderProps {
+	orientation: "vertical" | "horizontal"
+}
+
+export const useStylesHeader = createStyles(({ token }, { orientation }: StylesHeaderProps) => ({
 	header: {
-		paddingLeft: 8,
-		paddingRight: 8,
+		paddingLeft: orientation === "horizontal" ? 24 : 8,
+		paddingRight: orientation === "horizontal" ? 24 : 8,
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "space-between",

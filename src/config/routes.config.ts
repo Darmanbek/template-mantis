@@ -1,11 +1,6 @@
 class Routes {
 	HOME = "/"
 	
-	LOGIN = "/login"
-	LOGOUT = "/logout"
-	FORGOT_PASSWORD = "/forgot-password"
-	REGISTER = "/register"
-	
 	DASHBOARD_GROUP = "#Dashboard"
 	DASHBOARD = "/dashboard"
 	DASHBOARD_DEFAULT = "/dashboard/default"

@@ -7,7 +7,7 @@ const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
 	const token = useAuthStore(state => state.token)
 	
 	if (!token) {
-		return <Navigate to={ROUTES.LOGIN} replace={true} />
+		return <Navigate to={ROUTES.PAGES_AUTHENTICATION_LOGIN} replace={true} />
 	}
 	return children
 }
