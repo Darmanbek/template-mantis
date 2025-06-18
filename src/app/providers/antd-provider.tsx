@@ -41,6 +41,10 @@ const AntdProvider: FC<PropsWithChildren> = ({ children }) => {
 					Menu: {
 						subMenuItemBg: "transparent",
 					},
+					List: {
+						metaMarginBottom: 0,
+						titleMarginBottom: 0,
+					},
 				},
 			}}
 			typography={{

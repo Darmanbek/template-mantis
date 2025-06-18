@@ -1,15 +1,31 @@
-import { type  FC, PropsWithChildren } from "react"
-import { Navigate } from "react-router-dom"
-import { ROUTES } from "src/config/routes.config"
-import { useAuthStore } from "src/store"
+import { type FC, type PropsWithChildren, useState } from "react"
+import { AuthContext } from "src/shared/context"
+import { tokenStorage } from "src/shared/utils"
 
 const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
-	const token = useAuthStore(state => state.token)
-	
-	if (!token) {
-		return <Navigate to={ROUTES.PAGES_AUTHENTICATION_LOGIN} replace={true} />
+	const [isAuth, setIsAuth] = useState(() => !!tokenStorage.get())
+
+	const login: AuthContext["login"] = (token, remember) => {
+		tokenStorage.set(token, remember)
+		setIsAuth(true)
 	}
-	return children
+
+	const logout: AuthContext["logout"] = () => {
+		tokenStorage.remove()
+		setIsAuth(false)
+	}
+
+	return (
+		<AuthContext.Provider
+			value={{
+				isAuth,
+				login,
+				logout,
+			}}
+		>
+			{children}
+		</AuthContext.Provider>
+	)
 }
 
 export { AuthProvider }
