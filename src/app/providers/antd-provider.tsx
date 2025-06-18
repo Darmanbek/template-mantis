@@ -45,11 +45,9 @@ const AntdProvider: FC<PropsWithChildren> = ({ children }) => {
 						metaMarginBottom: 0,
 						titleMarginBottom: 0,
 					},
-				},
-			}}
-			typography={{
-				style: {
-					margin: 0,
+					Typography: {
+						titleMarginBottom: 0,
+					},
 				},
 			}}
 			menu={{

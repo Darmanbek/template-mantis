@@ -34,7 +34,9 @@ export const usePageHeaderStyles = createStyles(({ css, token, prefixCls }) => (
 						line-height: 1;
 
 						.${prefixCls}-page-header-back-button {
-							color: ${token.colorText};
+							&.ant-btn-color-link.ant-btn-variant-link:not(:hover):not(:active) {
+								 color: ${token.colorText};
+							}
 						}
 					}
 
@@ -54,11 +56,20 @@ export const usePageHeaderStyles = createStyles(({ css, token, prefixCls }) => (
 						text-overflow: ellipsis;
 					}
 				}
+
+				.${prefixCls}-page-header-heading-right {
+					margin: 4px 0;
+					white-space: nowrap;
 			}
 		}
 
 		&.${prefixCls}-page-header.has-breadcrumb {
 			padding-top: ${token.paddingSM}px;
+
+			.${prefixCls}-page-header-heading {
+				margin-top: 8px;
+			}
+		}
 		}
 
 		&.${prefixCls}-page-header-bordered {
