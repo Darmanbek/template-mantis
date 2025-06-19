@@ -18,6 +18,7 @@ import { Route as AuthLayoutRegisterRouteImport } from "./routes/_auth-layout/re
 import { Route as AuthLayoutLoginRouteImport } from "./routes/_auth-layout/login"
 import { Route as AuthLayoutForgotPasswordRouteImport } from "./routes/_auth-layout/forgot-password"
 import { Route as AuthLayoutCheckMailRouteImport } from "./routes/_auth-layout/check-mail"
+import { Route as LayoutDashboardDefaultRouteImport } from "./routes/_layout/dashboard/default"
 
 const LayoutRoute = LayoutRouteImport.update({
   id: "/_layout",
@@ -64,6 +65,11 @@ const AuthLayoutCheckMailRoute = AuthLayoutCheckMailRouteImport.update({
   path: "/check-mail",
   getParentRoute: () => AuthLayoutRoute,
 } as any)
+const LayoutDashboardDefaultRoute = LayoutDashboardDefaultRouteImport.update({
+  id: "/dashboard/default",
+  path: "/dashboard/default",
+  getParentRoute: () => LayoutRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   "/check-mail": typeof AuthLayoutCheckMailRoute
@@ -73,6 +79,7 @@ export interface FileRoutesByFullPath {
   "/reset-password": typeof AuthLayoutResetPasswordRoute
   "/verification-code": typeof AuthLayoutVerificationCodeRoute
   "/": typeof LayoutIndexRoute
+  "/dashboard/default": typeof LayoutDashboardDefaultRoute
 }
 export interface FileRoutesByTo {
   "/check-mail": typeof AuthLayoutCheckMailRoute
@@ -82,6 +89,7 @@ export interface FileRoutesByTo {
   "/reset-password": typeof AuthLayoutResetPasswordRoute
   "/verification-code": typeof AuthLayoutVerificationCodeRoute
   "/": typeof LayoutIndexRoute
+  "/dashboard/default": typeof LayoutDashboardDefaultRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -94,6 +102,7 @@ export interface FileRoutesById {
   "/_auth-layout/reset-password": typeof AuthLayoutResetPasswordRoute
   "/_auth-layout/verification-code": typeof AuthLayoutVerificationCodeRoute
   "/_layout/": typeof LayoutIndexRoute
+  "/_layout/dashboard/default": typeof LayoutDashboardDefaultRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -105,6 +114,7 @@ export interface FileRouteTypes {
     | "/reset-password"
     | "/verification-code"
     | "/"
+    | "/dashboard/default"
   fileRoutesByTo: FileRoutesByTo
   to:
     | "/check-mail"
@@ -114,6 +124,7 @@ export interface FileRouteTypes {
     | "/reset-password"
     | "/verification-code"
     | "/"
+    | "/dashboard/default"
   id:
     | "__root__"
     | "/_auth-layout"
@@ -125,6 +136,7 @@ export interface FileRouteTypes {
     | "/_auth-layout/reset-password"
     | "/_auth-layout/verification-code"
     | "/_layout/"
+    | "/_layout/dashboard/default"
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -197,6 +209,13 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof AuthLayoutCheckMailRouteImport
       parentRoute: typeof AuthLayoutRoute
     }
+    "/_layout/dashboard/default": {
+      id: "/_layout/dashboard/default"
+      path: "/dashboard/default"
+      fullPath: "/dashboard/default"
+      preLoaderRoute: typeof LayoutDashboardDefaultRouteImport
+      parentRoute: typeof LayoutRoute
+    }
   }
 }
 
@@ -224,10 +243,12 @@ const AuthLayoutRouteWithChildren = AuthLayoutRoute._addFileChildren(
 
 interface LayoutRouteChildren {
   LayoutIndexRoute: typeof LayoutIndexRoute
+  LayoutDashboardDefaultRoute: typeof LayoutDashboardDefaultRoute
 }
 
 const LayoutRouteChildren: LayoutRouteChildren = {
   LayoutIndexRoute: LayoutIndexRoute,
+  LayoutDashboardDefaultRoute: LayoutDashboardDefaultRoute,
 }
 
 const LayoutRouteWithChildren =

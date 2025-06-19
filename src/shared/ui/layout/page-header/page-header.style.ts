@@ -21,6 +21,7 @@ export const usePageHeaderStyles = createStyles(({ css, token, prefixCls }) => (
 			.${prefixCls}-page-header-heading {
 				display: flex;
 				justify-content: space-between;
+				flex-wrap: wrap;
 
 				.${prefixCls}-page-header-heading-left {
 					display: flex;
@@ -35,9 +36,14 @@ export const usePageHeaderStyles = createStyles(({ css, token, prefixCls }) => (
 
 						.${prefixCls}-page-header-back-button {
 							&.ant-btn-color-link.ant-btn-variant-link:not(:hover):not(:active) {
-								 color: ${token.colorText};
+								color: ${token.colorText};
 							}
 						}
+					}
+
+					.${prefixCls}-avatar {
+						margin-right: 16px;
+						flex-shrink: 0;
 					}
 
 					.${prefixCls}-page-header-heading-title {
@@ -55,21 +61,27 @@ export const usePageHeaderStyles = createStyles(({ css, token, prefixCls }) => (
 						white-space: nowrap;
 						text-overflow: ellipsis;
 					}
+
+					.${prefixCls}-page-header-heading-tags {
+						display: flex;
+						row-gap: 8px;
+						flex-wrap: wrap;
+					}
 				}
 
 				.${prefixCls}-page-header-heading-right {
 					margin: 4px 0;
 					white-space: nowrap;
+				}
 			}
-		}
 
-		&.${prefixCls}-page-header.has-breadcrumb {
-			padding-top: ${token.paddingSM}px;
+			&.${prefixCls}-page-header.has-breadcrumb {
+				padding-top: ${token.paddingSM}px;
 
-			.${prefixCls}-page-header-heading {
-				margin-top: 8px;
+				.${prefixCls}-page-header-heading {
+					margin-top: 8px;
+				}
 			}
-		}
 		}
 
 		&.${prefixCls}-page-header-bordered {
@@ -82,6 +94,10 @@ export const usePageHeaderStyles = createStyles(({ css, token, prefixCls }) => (
 			border-radius: 0;
 			border-color: transparent;
 			box-shadow: none;
+		}
+
+		.${prefixCls}-page-header-content {
+			padding-top: 12px;
 		}
 	`,
 }))

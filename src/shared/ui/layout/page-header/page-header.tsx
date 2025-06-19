@@ -48,6 +48,7 @@ const PageHeader = forwardRef<HTMLDivElement, PageHeaderProps>(
 			tags,
 			title,
 			onBack,
+			children,
 			...props
 		},
 		ref
@@ -146,6 +147,7 @@ const PageHeader = forwardRef<HTMLDivElement, PageHeaderProps>(
 						</div>
 					)}
 				</div>
+				{children && <div className={`${prefixCls}-page-header-content`}>{children}</div>}
 			</div>
 		)
 	}
