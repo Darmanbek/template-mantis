@@ -53,19 +53,8 @@ const PageHeader = forwardRef<HTMLDivElement, PageHeaderProps>(
 		},
 		ref
 	) => {
-		console.log({
-			avatar,
-			backIcon,
-			breadcrumb,
-			extra,
-			footer,
-			ghost,
-			subTitle,
-			tags,
-			title,
-			onBack,
-		})
 		const { cx, styles, prefixCls } = usePageHeaderStyles()
+
 		return (
 			<div
 				ref={ref}

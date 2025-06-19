@@ -1,4 +1,5 @@
 import { App, ConfigProvider, theme } from "antd"
+import { ConfigProvider as ChartConfigProvider } from "@ant-design/charts"
 import { type FC, type PropsWithChildren } from "react"
 import { useThemeStore } from "src/shared/store"
 
@@ -56,7 +57,9 @@ const AntdProvider: FC<PropsWithChildren> = ({ children }) => {
 				},
 			}}
 		>
-			<App>{children}</App>
+			<ChartConfigProvider>
+				<App>{children}</App>
+			</ChartConfigProvider>
 		</ConfigProvider>
 	)
 }
