@@ -1,13 +1,13 @@
 import { Flex } from "antd"
 import { type ListItemMetaProps } from "antd/es/list/Item"
-import Paragraph, { type ParagraphProps } from "antd/es/typography/Paragraph"
+import Text, { type TextProps } from "antd/es/typography/Text"
 import Title, { type TitleProps } from "antd/es/typography/Title"
 import type { FC } from "react"
 
 interface MetaProps extends ListItemMetaProps {
 	titleProps?: TitleProps
 	titleStrong?: boolean
-	descriptionProps?: ParagraphProps
+	descriptionProps?: TextProps
 }
 
 const Meta: FC<MetaProps> = (props) => {
@@ -31,27 +31,29 @@ const Meta: FC<MetaProps> = (props) => {
 				<div>{avatar}</div>
 				<Flex
 					vertical={true}
-					align={"start"}
+					style={{ textAlign: "start" }}
 				>
 					<Title
 						level={5}
-						style={
-							!titleStrong
-								? {
-										fontWeight: "normal",
-									}
-								: {}
-						}
 						{...titleProps}
+						style={{
+							marginBottom: 0,
+							fontWeight: !titleStrong ? "normal" : undefined,
+							...titleProps?.style,
+						}}
 					>
 						{title}
 					</Title>
-					<Paragraph
+					<Text
 						type={"secondary"}
 						{...descriptionProps}
+						style={{
+							marginBottom: 0,
+							...descriptionProps?.style,
+						}}
 					>
 						{description}
-					</Paragraph>
+					</Text>
 				</Flex>
 			</Flex>
 		</>
