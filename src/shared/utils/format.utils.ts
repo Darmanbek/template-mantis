@@ -7,3 +7,8 @@ export const formatCountUp = <T>(value: T, props?: Omit<CountUpProps, "end">) =>
 		separator: ",",
 		...props,
 	})
+
+export const formatPrice = <T>(value: T) => {
+	if (isNaN(Number(value))) return 0
+	return Intl.NumberFormat("en-EN").format(Number(value))
+}

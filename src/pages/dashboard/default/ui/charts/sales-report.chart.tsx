@@ -1,9 +1,11 @@
-import { Card, Checkbox, Flex, Select, Space, Statistic } from "antd"
-import { css, cx } from "antd-style"
-import { type FC } from "react"
+import { Light } from "@antv/g2"
+import { Card, Checkbox, ConfigProvider, Flex, Select, Space, Statistic } from "antd"
+import { type FC, useMemo, useState } from "react"
 import { useToken } from "src/shared/hooks"
 import { ChartColumn, type ChartColumnConfig } from "src/shared/ui"
 import { formatCountUp } from "src/shared/utils"
+
+const { category10 } = Light()
 
 const categories = [
 	"Jan",
@@ -23,19 +25,33 @@ const categories = [
 const data = [
 	{
 		category: "Income",
+		color: category10?.[0],
 		data: [180, 90, 135, 114, 120, 145, 170, 200, 170, 230, 210, 180],
 	},
 	{
 		category: "Cost of Sales",
+		color: category10?.[1],
 		data: [120, 45, 78, 150, 168, 99, 180, 220, 180, 210, 220, 200],
 	},
 ]
 
 const SalesReportChart: FC = () => {
 	const { token } = useToken()
+	const [legends, setLegends] = useState(() =>
+		data.map((el) => ({
+			value: true,
+			color: el.color,
+			category: el.category,
+		}))
+	)
+
+	const filteredData = useMemo(() => {
+		const filteredCategories = legends.filter((el) => el.value).map((el) => el.category)
+		return data.filter((el) => filteredCategories.includes(el.category))
+	}, [legends])
 
 	const config: ChartColumnConfig = {
-		data: data.flatMap((item) =>
+		data: filteredData.flatMap((item) =>
 			categories.map((el, index) => ({
 				month: el,
 				value: item.data[index],
@@ -92,20 +108,31 @@ const SalesReportChart: FC = () => {
 						}
 					/>
 					<Space>
-						<Checkbox
-							className={cx(css`
-								&.ant-checkbox-checked {
-									border-color: ${token.yellow4};
-
-									.ant-checkbox-inner {
-										background-color: ${token.yellow};
+						{legends.map((el, index) => (
+							<ConfigProvider
+								key={index}
+								theme={{
+									token: {
+										colorPrimary: el.color,
+									},
+								}}
+							>
+								<Checkbox
+									key={index}
+									checked={el.value}
+									onChange={(e) =>
+										setLegends((prev) =>
+											prev.map((item) => ({
+												...item,
+												value: item.category === el.category ? e.target.checked : item.value,
+											}))
+										)
 									}
-								}
-							`)}
-						>
-							Income
-						</Checkbox>
-						<Checkbox>Cost of Sales</Checkbox>
+								>
+									{el.category}
+								</Checkbox>
+							</ConfigProvider>
+						))}
 					</Space>
 				</Flex>
 				<ChartColumn {...config} />

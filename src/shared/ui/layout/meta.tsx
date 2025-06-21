@@ -28,7 +28,7 @@ const Meta: FC<MetaProps> = (props) => {
 				gap={8}
 				{...rest}
 			>
-				<div>{avatar}</div>
+				{avatar && <div>{avatar}</div>}
 				<Flex
 					vertical={true}
 					style={{ textAlign: "start" }}
