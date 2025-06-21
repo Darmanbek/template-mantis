@@ -1,5 +1,5 @@
 import { MoreOutlined } from "@ant-design/icons"
-import { createFileRoute } from "@tanstack/react-router"
+import { createFileRoute, redirect } from "@tanstack/react-router"
 import { Button, Dropdown, Row, Typography } from "antd"
 import { PageHeader } from "src/shared/ui"
 
@@ -7,6 +7,12 @@ const { Paragraph } = Typography
 
 export const Route = createFileRoute("/_layout/")({
 	component: RouteComponent,
+	beforeLoad: () => {
+		throw redirect({
+			to: "/dashboard/default",
+			replace: true,
+		})
+	},
 })
 
 const items = [

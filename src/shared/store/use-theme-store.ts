@@ -1,3 +1,4 @@
+import { type PresetColorKey } from "antd/es/theme/interface"
 import { COLORS } from "src/shared/constants"
 import { create } from "zustand"
 
@@ -50,6 +51,9 @@ interface IThemeStore {
 	isDark: boolean
 	setDarkMode: (isDark: boolean) => void
 
+	colorType: PresetColorKey
+	setColorType: (colorType: PresetColorKey) => void
+
 	color: string
 	setColor: (color: string) => void
 
@@ -96,7 +100,10 @@ const useThemeStore = create<IThemeStore>()((set) => ({
 	isDark: false,
 	setDarkMode: (isDark) => set({ isDark }),
 
-	color: COLORS.colorPrimary,
+	colorType: COLORS.colorPrimary.type,
+	setColorType: (colorType) => set({ colorType }),
+
+	color: COLORS.colorPrimary.color,
 	setColor: (color) => set({ color }),
 
 	width: EnumWidth.CONTAINER,

@@ -25,14 +25,12 @@ const Meta: FC<MetaProps> = (props) => {
 		<>
 			<Flex
 				align={"center"}
+				style={{ textAlign: "start" }}
 				gap={8}
 				{...rest}
 			>
 				{avatar && <div>{avatar}</div>}
-				<Flex
-					vertical={true}
-					style={{ textAlign: "start" }}
-				>
+				<Flex vertical={true}>
 					<Title
 						level={5}
 						{...titleProps}

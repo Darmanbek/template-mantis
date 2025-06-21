@@ -19,7 +19,7 @@ import { ThemeWidth } from "./width/theme-width.tsx"
 
 const ThemeContent: FC = () => {
 	const { open, toggleOpen } = useThemeStore()
-	const { direction } = useThemeStore()
+	const { direction, colorType } = useThemeStore()
 	const { styles } = useStylesTheme()
 
 	const items: CollapseProps["items"] = [
@@ -30,7 +30,7 @@ const ThemeContent: FC = () => {
 					avatar={
 						<AvatarTag
 							tagProps={{
-								color: "blue",
+								color: colorType,
 							}}
 							src={<LayoutOutlined style={{ fontSize: "inherit" }} />}
 						/>
@@ -48,7 +48,7 @@ const ThemeContent: FC = () => {
 					avatar={
 						<AvatarTag
 							tagProps={{
-								color: "blue",
+								color: colorType,
 							}}
 							src={<BorderInnerOutlined style={{ fontSize: "inherit" }} />}
 						/>
@@ -66,7 +66,7 @@ const ThemeContent: FC = () => {
 					avatar={
 						<AvatarTag
 							tagProps={{
-								color: "blue",
+								color: colorType,
 							}}
 							src={<HighlightOutlined style={{ fontSize: "inherit" }} />}
 						/>
@@ -84,7 +84,7 @@ const ThemeContent: FC = () => {
 					avatar={
 						<AvatarTag
 							tagProps={{
-								color: "blue",
+								color: colorType,
 							}}
 							src={<BgColorsOutlined style={{ fontSize: "inherit" }} />}
 						/>
@@ -102,7 +102,7 @@ const ThemeContent: FC = () => {
 					avatar={
 						<AvatarTag
 							tagProps={{
-								color: "blue",
+								color: colorType,
 							}}
 							src={<BorderInnerOutlined style={{ fontSize: "inherit" }} />}
 						/>
@@ -120,7 +120,7 @@ const ThemeContent: FC = () => {
 					avatar={
 						<AvatarTag
 							tagProps={{
-								color: "blue",
+								color: colorType,
 							}}
 							src={<FontColorsOutlined style={{ fontSize: "inherit" }} />}
 						/>
