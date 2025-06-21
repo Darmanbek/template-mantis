@@ -1,6 +1,7 @@
 import { Badge, Table, type TableColumnsType } from "antd"
 import { css, cx } from "antd-style"
 import { type FC } from "react"
+import { useToken } from "src/shared/hooks"
 import { Text, Title } from "src/shared/ui"
 import { formatPrice } from "src/shared/utils"
 
@@ -146,6 +147,8 @@ const columns: TableColumnsType<DataType> = [
 ]
 
 const RecentOrdersTable: FC = () => {
+	const { token } = useToken()
+
 	return (
 		<>
 			<Table<DataType>
@@ -153,6 +156,15 @@ const RecentOrdersTable: FC = () => {
 				title={() => <Title level={5}>Recent Orders</Title>}
 				dataSource={data}
 				columns={columns}
+				pagination={{
+					total: 100,
+					style: {
+						backgroundColor: token.colorBgContainer,
+						marginBlock: 0,
+						padding: token.padding,
+						borderRadius: `0 0 ${token.borderRadiusLG}px ${token.borderRadiusLG}px`,
+					},
+				}}
 			/>
 		</>
 	)
